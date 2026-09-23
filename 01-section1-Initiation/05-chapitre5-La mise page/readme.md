@@ -97,7 +97,7 @@ Reprenons notre carte de profil du Chapitre 1 et améliorons-la en y ajoutant un
 
 ```html
 <div class="carte-profil">
-    <img src="https://picsum.photos/400/250" alt="Avatar">
+    <img src="https://hikarudistribution.com/cdn/shop/articles/Greninja_7a435a2b-7aae-4de5-a335-5c1c290a241f.png?v=1767881244&width=1200" alt="Avatar">
     
     <div class="carte-corps">
         <!-- En-tête aligné en Flexbox horizontal -->

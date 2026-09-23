@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Card</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+    
+        .carte-profil {
+            background-color: #1e293b;
+            width: 100%;
+            max-width: 550px;
+            border-radius: 16px;
+            overflow: hidden;
+            /* Empêche l'image de dépasser des coins arrondis */
+            flex-wrap: wrap;
+            border: 2px solid #38bdf8;
+            display: flex;
+            min-height: 250px;
+            gap: 0;
+            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            cursor: pointer;
+        }
+        /* Effet d'interaction au survol */
+        .carte-profil:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px rgba(56, 189, 248, 0.25);
+            border-color: #38bdf8;
+        }
+
+        .carte-img {
+            flex: 1 1 200px;
+            /*flex: 1 1 30%;*/
+            min-width: 200px;
+        }
+        .carte-profil img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block; /* Supprime le bug des 4px sous l'image */
+        }
+    
+        /* Le corps de la carte utilise Flexbox en mode colonne */
+        .carte-corps {
+            flex: 1 1 200px;
+            /*flex: 1 1 70%;*/
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            /*align-items: start;*/
+            /* Empile les éléments du haut vers le bas */
+            gap: 1rem;
+            /* Espacement automatique entre chaque bloc */
+        }
+    
+        .carte-header {
+            display: flex;
+            justify-content: space-between;
+            /* Titre à gauche, Badge à droite */
+            align-items: center;
+            /* Centrage vertical */
+        }
+    
+        .carte-header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+    
+        .carte-corps p {
+            margin: 0;
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+    
+        .badge {
+            background-color: #0284c7;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+    
+        /* La Grille de statistiques (CSS Grid) */
+        .stats-grille {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+            /* Espacement de 8px */
+        }
+    
+        .stat-box {
+            background-color: #0f172a;
+            padding: 0.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #334155;
+        }
+    
+        /* On utilise des sélecteurs imbriqués pour styliser l'intérieur des stats */
+        .stat-box span {
+            display: block;
+            font-size: 0.7rem;
+            color: #64748b;
+            text-transform: uppercase;
+        }
+    
+        .stat-box strong {
+            font-size: 1.1rem;
+            color: #38bdf8;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="carte-profil">
+        <div class="carte-img">
+            <img src="https://hikarudistribution.com/cdn/shop/articles/Greninja_7a435a2b-7aae-4de5-a335-5c1c290a241f.png?v=1767881244&width=1200"
+    alt="Avatar">
+
+        </div>
+        <div class="carte-corps">
+            <!-- En-tête aligné en Flexbox horizontal -->
+            <div class="carte-header">
+                <h1>CyberNinja</h1>
+                <span class="badge">Niv. 42</span>
+            </div>
+
+            <p>Expert en infiltration numérique et en CSS.</p>
+
+            <!-- Grille de statistiques en CSS Grid -->
+            <div class="stats-grille">
+                <div class="stat-box">
+                    <span>Attaque</span>
+                    <strong>95</strong>
+                </div>
+                <div class="stat-box">
+                    <span>Défense</span>
+                    <strong>80</strong>
+                </div>
+                <div class="stat-box">
+                    <span>Vitesse</span>
+                    <strong>110</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
