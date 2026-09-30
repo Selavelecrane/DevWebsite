@@ -1,0 +1,261 @@
+1. Inclusion des fichiers externes (CSS, Polices, JS)
+   Ces balises se placent dans la balise <head> du document HTML, à l'exception du script JS classique qui peut aussi se placer juste avant </body>.
+
+HTML
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Titre de la page</title>
+
+  <!-- 1. Fichier CSS externe -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- 2. Police Google Fonts (exemple: Roboto) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- 3. Fichier JavaScript (avec 'defer' pour charger après le HTML) -->
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <!-- Contenu -->
+</body>
+</html>
+
+2. Structure HTML/CSS de base (Sticky Footer + Centrage)
+   Ce squelette garantit que le footer reste en bas de page même si le contenu est court, et propose une classe .container pour basculer facilement entre 100% et 80% de largeur.
+   Code HTML
+
+HTML
+
+<body>
+  <header class="site-header">
+    <div class="container">
+      <!-- Contenu Header -->
+    </div>
+  </header>
+
+  <main class="site-main container">
+    <!-- Contenu Principal -->
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <!-- Contenu Footer -->
+    </div>
+  </footer>
+</body>
+
+Code CSS (Flexbox)
+
+CSS
+/_ Reset basique _/
+
+- {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  }
+
+/_ Flexbox sur le body pour coller le footer en bas _/
+body {
+display: flex;
+flex-direction: column;
+min-height: 100vh;
+font-family: 'Roboto', sans-serif;
+}
+
+/_ Flex: 1 permet au main d'occuper tout l'espace disponible _/
+.site-main {
+flex: 1;
+padding: 2rem 0;
+}
+
+/_ Gestion de la largeur (Option 80% centré ou 100%) _/
+.container {
+width: 80%; /_ 80% de la largeur _/
+max-width: 1200px; /_ Sécurité sur très grands écrans _/
+margin: 0 auto; /_ Centrage horizontal _/
+}
+
+/_ Pour passer un élément en 100% pleine largeur _/
+.container-full {
+width: 100%;
+padding: 0 2rem;
+}
+
+3. Variantes de Header avec Flexbox
+   Variante A : Classique (Logo à gauche, Navigation à droite)
+
+HTML
+
+<header class="header-a">
+  <div class="container flex-header">
+    <div class="logo">MonLogo</div>
+    <nav class="nav">
+      <a href="#">Accueil</a>
+      <a href="#">Services</a>
+      <a href="#">Contact</a>
+    </nav>
+  </div>
+</header>
+
+CSS
+.flex-header {
+display: flex;
+justify-content: space-between; /_ Écarte le logo et la nav aux extrémités _/
+align-items: center; /_ Aligne verticalement au centre _/
+padding: 1rem 0;
+}
+
+.nav {
+display: flex;
+gap: 1.5rem; /_ Espace entre les liens _/
+}
+
+Variante B : Centré Empilé (Logo en haut, Navigation en dessous)
+
+HTML
+
+<header class="header-b">
+  <div class="container flex-header-stacked">
+    <div class="logo">MonLogo</div>
+    <nav class="nav">
+      <a href="#">Accueil</a>
+      <a href="#">Services</a>
+      <a href="#">Contact</a>
+    </nav>
+  </div>
+</header>
+
+CSS
+.flex-header-stacked {
+display: flex;
+flex-direction: column; /_ Empile le logo et la nav _/
+align-items: center; /_ Centre horizontalement _/
+gap: 1rem;
+padding: 1rem 0;
+}
+
+Variante C : Triple Section (Logo, Nav centrale, Bouton d'action)
+
+HTML
+
+<header class="header-c">
+  <div class="container flex-header-action">
+    <div class="logo">MonLogo</div>
+    <nav class="nav">
+      <a href="#">Accueil</a>
+      <a href="#">Services</a>
+    </nav>
+    <a href="#" class="btn-cta">S'abonner</a>
+  </div>
+</header>
+
+CSS
+.flex-header-action {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 1rem 0;
+}
+
+4. Mises en page pour le <main> avec Flexbox
+   Disposition 1 : Article principal + Barre latérale (Sidebar)
+
+HTML
+
+<main class="site-main container layout-sidebar">
+  <article class="content">
+    <h1>Titre de l'article</h1>
+    <p>Contenu principal...</p>
+  </article>
+  <aside class="sidebar">
+    <h3>Barre latérale</h3>
+    <p>Raccourcis ou pubs...</p>
+  </aside>
+</main>
+
+CSS
+.layout-sidebar {
+display: flex;
+gap: 2rem;
+}
+
+.content {
+flex: 3; /_ Occupe 3 parts de l'espace (~75%) _/
+}
+
+.sidebar {
+flex: 1; /_ Occupe 1 part de l'espace (~25%) _/
+background-color: #f4f4f4;
+padding: 1rem;
+}
+
+Disposition 2 : Grille de 3 cartes/colonnes réutilisables
+
+HTML
+
+<main class="site-main container layout-cards">
+  <div class="card">Carte 1</div>
+  <div class="card">Carte 2</div>
+  <div class="card">Carte 3</div>
+</main>
+
+CSS
+.layout-cards {
+display: flex;
+flex-wrap: wrap; /_ Permet le retour à la ligne sur petit écran _/
+gap: 1.5rem;
+}
+
+.card {
+flex: 1 1 calc(33.333% - 1.5rem); /_ Force 3 colonnes égales avec le gap _/
+background: #fff;
+border: 1px solid #ddd;
+padding: 1.5rem;
+border-radius: 8px;
+}
+
+Disposition 3 : Disposition alternée en Z (Image + Texte)
+
+HTML
+
+<main class="site-main container layout-zigzag">
+  <section class="row">
+    <div class="media">Image 1</div>
+    <div class="text">Texte explicatif 1</div>
+  </section>
+
+  <section class="row reverse">
+    <div class="media">Image 2</div>
+    <div class="text">Texte explicatif 2</div>
+  </section>
+</main>
+
+CSS
+.layout-zigzag {
+display: flex;
+flex-direction: column;
+gap: 3rem;
+}
+
+.row {
+display: flex;
+align-items: center;
+gap: 2rem;
+}
+
+/_ Inverse l'ordre visuel (image/texte) sans toucher au HTML _/
+.row.reverse {
+flex-direction: row-reverse;
+}
+
+.row .media,
+.row .text {
+flex: 1; /_ Distribue l'espace à 50/50 _/
+}
